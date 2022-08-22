@@ -45,11 +45,11 @@ describe BreadcrumbGenerator do
         end
       end
 
-      context "when given the base url and a site" do
+      context "when given the base url and a domain" do
         context "without a trailing /" do
           let(:url) { "https://www.btplc.com/SITES" }
 
-          it "returns HOME surrounded by an href tag" do
+          it "returns HOME and the domain in href tags" do
             expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> : <a href="/SITES/">SITES</a>'
           end
         end
@@ -57,8 +57,26 @@ describe BreadcrumbGenerator do
         context "with a trailing /" do
           let(:url) { "https://www.btplc.com/SITES/" }
 
-          it "returns HOME surrounded by an href tag" do
+          it "returns HOME and the domain in href tags" do
             expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> : <a href="/SITES/">SITES</a>'
+          end
+        end
+      end
+
+      context "when given the base url, domain and page" do
+        context "without a file extension" do
+          let(:url) { "https://www.btplc.com/SITES/ADASTRAL" }
+
+          it "returns HOME and the domain in href tags and the page in span tags" do
+            expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> : <a href="/SITES/">SITES</a> : <span class="active">ADASTRAL</span>'
+          end
+        end
+
+        context "with the file extension" do
+          let(:url) { "https://www.btplc.com/SITES/ADASTRAL.HTML" }
+
+          it "returns HOME and the domain in href tags and the page in span tags" do
+            expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> : <a href="/SITES/">SITES</a> : <span class="active">ADASTRAL</span>'
           end
         end
       end

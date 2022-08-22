@@ -14,7 +14,8 @@ class BreadcrumbGenerator
     {
       prefix: url_split[0],
       base_url: url_split[1],
-      domain: url_split[2]
+      domain: url_split[2],
+      page: url_split[3]
     }
   end
 
@@ -22,6 +23,9 @@ class BreadcrumbGenerator
     link_array = ['<a href="/">HOME</a>']
     if url_sections[:domain]
       link_array << '<a href="/SITES/">SITES</a>'
+    end
+    if url_sections[:page]
+      link_array << '<span class="active">ADASTRAL</span>'
     end
     link_array.join(separator)
   end
