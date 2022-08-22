@@ -44,6 +44,24 @@ describe BreadcrumbGenerator do
           end
         end
       end
+
+      context "when given the base url and a site" do
+        context "without a trailing /" do
+          let(:url) { "https://www.btplc.com/SITES" }
+
+          it "returns HOME surrounded by an href tag" do
+            expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> : <a href="/SITES/">SITES</a>'
+          end
+        end
+
+        context "with a trailing /" do
+          let(:url) { "https://www.btplc.com/SITES/" }
+
+          it "returns HOME surrounded by an href tag" do
+            expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> : <a href="/SITES/">SITES</a>'
+          end
+        end
+      end
     end
   end
 end
