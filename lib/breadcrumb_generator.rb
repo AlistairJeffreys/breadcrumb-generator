@@ -22,7 +22,8 @@ class BreadcrumbGenerator
   def build_links url_sections, separator
     link_array = ['<a href="/">HOME</a>']
     if url_sections[:domain]
-      link_array << '<a href="/SITES/">SITES</a>'
+      domain = url_sections[:domain]
+      link_array << "<a href=\"/#{domain}/\">#{domain.upcase}</a>"
     end
     if url_sections[:page]
       link_array << '<span class="active">ADASTRAL</span>'
