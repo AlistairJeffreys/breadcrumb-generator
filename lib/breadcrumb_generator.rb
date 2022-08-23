@@ -23,12 +23,13 @@ class BreadcrumbGenerator
 
   def build_links url_sections, separator
     link_array = ['<a href="/">HOME</a>']
+    page = url_sections[:page]
     domains = url_sections[:domains]
     if domains && !domains.empty?
       link_array << domain_links(domains)
     end
-    if url_sections[:page]
-      link_array << "<span class=\"active\">#{url_sections[:page].split(".").first.upcase}</span>"
+    if page && (page.split(".").first != "index")
+      link_array << page_link(page)
     end
     link_array.join(separator)
   end
@@ -43,5 +44,9 @@ class BreadcrumbGenerator
       domain_path << domain
       "<a href=\"/#{domain_path.join("/")}/\">#{domain.upcase}</a>"
     end
+  end
+
+  def page_link page
+    "<span class=\"active\">#{page.split(".").first.upcase}</span>"
   end
 end
