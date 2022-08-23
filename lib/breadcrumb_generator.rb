@@ -26,7 +26,7 @@ class BreadcrumbGenerator
       link_array << "<a href=\"/#{domain}/\">#{domain.upcase}</a>"
     end
     if url_sections[:page]
-      link_array << '<span class="active">ADASTRAL</span>'
+      link_array << "<span class=\"active\">#{url_sections[:page].split(".").first.upcase}</span>"
     end
     link_array.join(separator)
   end

@@ -123,18 +123,18 @@ describe BreadcrumbGenerator do
 
       context "when given the base url, domain and page" do
         context "without a file extension" do
-          let(:url) { "https://www.btplc.com/careercentre/ADASTRAL" }
+          let(:url) { "https://www.btplc.com/careercentre/Technology" }
 
           it "returns HOME and the domain in href tags and the page in span tags" do
-            expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> / <a href="/careercentre/">CAREERCENTRE</a> / <span class="active">ADASTRAL</span>'
+            expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> / <a href="/careercentre/">CAREERCENTRE</a> / <span class="active">TECHNOLOGY</span>'
           end
         end
 
         context "with the file extension" do
-          let(:url) { "https://www.btplc.com/careercentre/ADASTRAL.HTML" }
+          let(:url) { "https://www.btplc.com/careercentre/Technology.htm" }
 
           it "returns HOME and the domain in href tags and the page in span tags" do
-            expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> / <a href="/careercentre/">CAREERCENTRE</a> / <span class="active">ADASTRAL</span>'
+            expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> / <a href="/careercentre/">CAREERCENTRE</a> / <span class="active">TECHNOLOGY</span>'
           end
         end
       end
