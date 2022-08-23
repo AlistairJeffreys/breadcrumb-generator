@@ -14,8 +14,6 @@ class BreadcrumbGenerator
     page = url_has_page(url_split) ? url_split.last : nil
     domains = page ? url_split[2..-2] : url_split[2..]
     {
-      prefix: url_split[0],
-      base_url: url_split[1],
       domains: domains,
       page: page
     }
