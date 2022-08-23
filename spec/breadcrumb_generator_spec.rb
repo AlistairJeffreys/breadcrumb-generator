@@ -48,6 +48,14 @@ describe BreadcrumbGenerator do
               expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> : <a href="/SITES/">SITES</a> : <span class="active">ADASTRAL</span>'
             end
           end
+
+          context "with an index page" do
+            let(:url) { "https://www.btplc.com/careercentre/index.htm" }
+
+            it "returns the breadcrumb without the page" do
+              expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> : <a href="/careercentre/">CAREERCENTRE</a>'
+            end
+          end
         end
 
         context "with multiple domains" do
