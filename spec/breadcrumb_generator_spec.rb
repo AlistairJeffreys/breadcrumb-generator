@@ -103,5 +103,14 @@ describe BreadcrumbGenerator do
         end
       end
     end
+
+    context "when the page url segment is longer than 20 characters" do
+      let(:url) { "https://www.bt.com/very-long-url-to-make-a-silly-yet-meaningful-example/example.html" }
+      let(:seperator) { " : " }
+
+      it "returns HOME and the shortened domain in href tags and the page in span tags" do
+        expect(subject.breadcrumb_function(url, seperator)).to eq '<a href="/">HOME</a> : <a href="/very-long-url-to-make-a-silly-yet-meaningful-example/">VLUMSYME</a> : <span class="active">EXAMPLE</span>'
+      end
+    end
   end
 end

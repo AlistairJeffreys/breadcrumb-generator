@@ -40,8 +40,19 @@ class BreadcrumbGenerator
     domain_path = []
     domains.map do |domain|
       domain_path << domain
-      "<a href=\"/#{domain_path.join("/")}/\">#{domain.upcase}</a>"
+      domain_to_display = domain_url_to_display_domain(domain)
+      "<a href=\"/#{domain_path.join("/")}/\">#{domain_to_display}</a>"
     end
+  end
+
+  def domain_url_to_display_domain domain
+    if domain.length > 20
+      domain.split("-").map do |w| 
+        w.chars.first if w.length > 2
+      end.join("")
+    else
+      domain
+    end.upcase
   end
 
   def page_link page
